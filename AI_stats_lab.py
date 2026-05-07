@@ -8,87 +8,152 @@ import numpy as np
 
 
 # -------------------------------------------------
-# Question 1: Continuous pair on the unit square
+# Sparse 4 by 4 Joint PMF
 # -------------------------------------------------
 
-def joint_cdf_unit_square(x, y):
+def joint_pmf(x, y):
     """
-    Return the joint CDF F_XY(x, y) for (X, Y) uniform on the unit square.
+    Joint PMF table:
 
-    F_XY(x, y) =
-        0                   if x <= 0 or y <= 0
-        x*y                 if 0 < x < 1 and 0 < y < 1
-        x                   if 0 < x < 1 and y >= 1
-        y                   if x >= 1 and 0 < y < 1
-        1                   if x >= 1 and y >= 1
-    """
-    pass
-
-
-def rectangle_probability(x1, x2, y1, y2):
-    """
-    Compute P(x1 < X <= x2, y1 < Y <= y2)
-    using the joint CDF rectangle formula.
+             y=0   y=1   y=2   y=3
+    x=0      0.10  0.05  0.00  0.00
+    x=1      0.15  0.20  0.05  0.00
+    x=2      0.00  0.10  0.15  0.05
+    x=3      0.00  0.00  0.05  0.10
     """
     pass
 
 
-def marginal_fx_unit_square(x):
+def marginal_px(x):
     """
-    Return the marginal PDF f_X(x) for X when (X, Y) is uniform on the unit square.
-
-    f_X(x) =
-        1   if 0 < x < 1
-        0   otherwise
+    Compute PX(x) by summing joint_pmf(x, y) over y = 0,1,2,3.
     """
     pass
 
 
-def marginal_fy_unit_square(y):
+def marginal_py(y):
     """
-    Return the marginal PDF f_Y(y) for Y when (X, Y) is uniform on the unit square.
+    Compute PY(y) by summing joint_pmf(x, y) over x = 0,1,2,3.
+    """
+    pass
 
-    f_Y(y) =
-        1   if 0 < y < 1
-        0   otherwise
+
+def conditional_pmf_x_given_y(x, y):
+    """
+    Compute P(X=x given Y=y).
+
+    P(X=x given Y=y) = joint_pmf(x,y) / PY(y)
+
+    If PY(y) is zero, return 0.
+    """
+    pass
+
+
+def conditional_distribution_x_given_y(y):
+    """
+    Return conditional distribution of X given Y=y
+    as dictionary:
+
+    {
+        0: P(X=0 given Y=y),
+        1: P(X=1 given Y=y),
+        2: P(X=2 given Y=y),
+        3: P(X=3 given Y=y)
+    }
+    """
+    pass
+
+
+def probability_sum_greater_than_3():
+    """
+    Compute P(X + Y > 3).
+    """
+    pass
+
+
+def independence_check():
+    """
+    Return True if X and Y are independent.
+
+    X and Y are independent if:
+
+    joint_pmf(x,y) = PX(x) * PY(y)
+
+    for every x and y.
     """
     pass
 
 
 # -------------------------------------------------
-# Question 2: Joint PMF, marginals, independence
+# Expectation, Covariance, and Correlation
 # -------------------------------------------------
 
-def joint_pmf_heads(x, y):
+def expected_x():
     """
-    Return P_XY(x, y) for:
-    X = number of heads in the first toss
-    Y = total number of heads in both tosses
-
-    Table:
-                 y=0   y=1   y=2
-        x=0      1/4   1/4    0
-        x=1       0    1/4   1/4
+    Compute E[X].
     """
     pass
 
 
-def marginal_px_heads(x):
+def expected_y():
     """
-    Return P_X(x) by summing the joint PMF over y.
-    """
-    pass
-
-
-def marginal_py_heads(y):
-    """
-    Return P_Y(y) by summing the joint PMF over x.
+    Compute E[Y].
     """
     pass
 
 
-def check_independence_heads():
+def expected_xy():
     """
-    Return True if X and Y are independent, else False.
+    Compute E[XY].
+    """
+    pass
+
+
+def variance_x():
+    """
+    Compute Var(X).
+    """
+    pass
+
+
+def variance_y():
+    """
+    Compute Var(Y).
+    """
+    pass
+
+
+def covariance_xy():
+    """
+    Compute Cov(X,Y).
+
+    Cov(X,Y) = E[XY] - E[X]*E[Y]
+    """
+    pass
+
+
+def correlation_xy():
+    """
+    Compute correlation coefficient:
+
+    rho_XY = Cov(X,Y) / sqrt( Var(X) * Var(Y) )
+    """
+    pass
+
+
+def variance_sum():
+    """
+    Compute Var(X+Y).
+    """
+    pass
+
+
+def variance_identity_check():
+    """
+    Verify:
+
+    Var(X+Y) = Var(X) + Var(Y) + 2*Cov(X,Y)
+
+    Return True if the identity holds, else False.
     """
     pass
