@@ -1,111 +1,79 @@
-# AI Statistics Lab: Pairs of Random Variables
+# Advanced AI Statistics Lab
+## Sparse Joint PMF, Conditional PMF, Covariance, and Correlation
 
-This lab is based on the topics:
-- joint CDF
-- probability over rectangular regions
-- joint PDF
-- marginal PDFs
-- joint PMF
-- marginal PMFs
-- independence for discrete random variables
+This lab focuses on two-variable probability concepts:
 
----
-
-## Learning Goals
-
-By the end of this lab, students should be able to:
-
-1. Compute probabilities from a joint CDF over rectangular regions
-2. Work with a continuous joint PDF and derive marginals
-3. Work with a discrete joint PMF and derive marginals
-4. Check whether two discrete random variables are independent
+- Joint PMF
+- Marginal PMFs
+- Conditional PMFs
+- Probability over a set
+- Expectation
+- Covariance
+- Correlation
+- Independence
+- Variance identity
 
 ---
 
-## Question 1: Continuous Pair on the Unit Square
+# Question 1 — Sparse 4×4 Joint PMF
 
-Suppose (X, Y) is uniformly distributed on the unit square:
+You are given the following joint PMF:
 
-0 < x < 1, 0 < y < 1
+|      | y=0  | y=1  | y=2  | y=3  |
+|------|------|------|------|------|
+| x=0  | 0.10 | 0.05 | 0.00 | 0.00 |
+| x=1  | 0.15 | 0.20 | 0.05 | 0.00 |
+| x=2  | 0.00 | 0.10 | 0.15 | 0.05 |
+| x=3  | 0.00 | 0.00 | 0.05 | 0.10 |
 
-Then the joint PDF is
+Tasks:
 
-f_XY(x, y) = 1,   0 < x < 1 and 0 < y < 1
-              0,   otherwise
-
-and the joint CDF is piecewise; in the interior of the unit square,
-
-F_XY(x, y) = xy,  0 < x < 1 and 0 < y < 1. 
-
-### Tasks
-
-Implement the following functions:
-
-1. `joint_cdf_unit_square(x, y)`
-   - Return F_XY(x, y)
-
-2. `rectangle_probability(x1, x2, y1, y2)`
-   - Compute P(x1 < X <= x2, y1 < Y <= y2)
-   - Use the joint CDF rectangle formula:
-     F(x2, y2) - F(x1, y2) - F(x2, y1) + F(x1, y1) 
-
-3. `marginal_fx_unit_square(x)`
-   - Return the marginal PDF f_X(x)
-
-4. `marginal_fy_unit_square(y)`
-   - Return the marginal PDF f_Y(y)
+1. Implement the joint PMF.
+2. Compute marginal PMFs `P_X(x)` and `P_Y(y)`.
+3. Compute conditional PMF `P(X=x | Y=y)`.
+4. Return the full conditional distribution of `X` given `Y=y`.
+5. Compute `P(X+Y > 3)`.
+6. Check whether `X` and `Y` are independent.
 
 ---
 
-## Question 2: Joint PMF, Marginals, and Independence
+# Question 2 — Expectation, Covariance, and Correlation
 
-Use the discrete pair from the slides:
+Using the same joint PMF table:
 
-Flip two fair coins and define:
-- X = number of heads in the first toss
-- Y = total number of heads in both tosses
+Tasks:
 
-Possible outcomes:
-- TT -> (0, 0)
-- TH -> (0, 1)
-- HT -> (1, 1)
-- HH -> (1, 2)
+1. Compute `E[X]`.
+2. Compute `E[Y]`.
+3. Compute `E[XY]`.
+4. Compute `Var(X)`.
+5. Compute `Var(Y)`.
+6. Compute `Cov(X,Y)`.
+7. Compute the correlation coefficient:
 
-So the joint PMF is:
+\[
+\rho_{XY}
+=
+\frac{\operatorname{Cov}(X,Y)}
+{\sqrt{\operatorname{Var}(X)\operatorname{Var}(Y)}}
+\]
 
-             y=0   y=1   y=2
-x=0          1/4   1/4    0
-x=1           0    1/4   1/4
+8. Compute `Var(X+Y)`.
+9. Verify:
 
-
-### Tasks
-
-Implement the following functions:
-
-1. `joint_pmf_heads(x, y)`
-   - Return P_XY(x, y)
-
-2. `marginal_px_heads(x)`
-   - Return P_X(x)
-
-3. `marginal_py_heads(y)`
-   - Return P_Y(y)
-
-4. `check_independence_heads()`
-   - Return `True` if X and Y are independent, else `False`
+\[
+\operatorname{Var}(X+Y)
+=
+\operatorname{Var}(X)
++
+\operatorname{Var}(Y)
++
+2\operatorname{Cov}(X,Y)
+\]
 
 ---
 
-## Instructions
-
-Edit only:
-
-`AI_stats_lab.py`
-
-Do not modify the test file.
-
-
-## Run Locally
+# Run Locally
 
 ```bash
 pip install numpy pytest
